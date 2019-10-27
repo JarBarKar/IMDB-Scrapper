@@ -17,6 +17,7 @@ containers = res_soup.findAll('div', {'class': 'lister-item-content'})
 
 index = 1
 
+# filter the year into a more readable data
 def filter_year(input):
     year = ''
     for char in input:
@@ -25,7 +26,7 @@ def filter_year(input):
     return year
 
 rows_of_data = []
-# iterate through each container and append the relevant detail into a list
+# iterate through each container and append the relevant details into a list
 for container in containers:
     title = container.find('a').text
     sample_year = container.find('span',{'class','lister-item-year text-muted unbold'}).text[1:-1]
@@ -43,7 +44,7 @@ for container in containers:
     index+=1
 
 
-#write data into csv
+# write data into csv
 with open('Top50Movies.csv','w',newline='') as output:
     output_writer = csv.writer(output)
     output_writer.writerow(['No.','Title','Year','Length','Rating'])
